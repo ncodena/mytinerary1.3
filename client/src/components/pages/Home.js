@@ -1,9 +1,10 @@
 import React from 'react';
+import Cities from './Cities';
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
+        <div className='col-7'>
+            <Cities/>
         </div>
     )
 }

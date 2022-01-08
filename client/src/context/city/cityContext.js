@@ -1,5 +1,5 @@
 import {createContext} from 'react';
 
-const cityContext = createContext();
+const CityContext = createContext();
 
-export default cityContext;
+export default CityContext;
