@@ -4,7 +4,7 @@ import React from 'react';
 const City = ({city}) => {
    
 
-        const {id, name, img, country} = city;
+        const {name, img, country} = city;
 
         return (
             <div className="card bg-light pb-2 mb-5">
