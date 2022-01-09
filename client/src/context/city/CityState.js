@@ -1,9 +1,9 @@
 import React, {useReducer} from 'react';
-import cityContext from './cityContext';
+import CityContext from './cityContext';
 import cityReducer from '../cityReducer';
 
 
-import {REQUEST_CITIES, RECEIVE_CITIES, FAILURE_FETCHING_CITIES} from '../types';
+import {FILTER_CITIES, CLEAR_CITIES} from '../types';
 
 const CitiesState = props => {
     const initialState = {
@@ -30,7 +30,8 @@ const CitiesState = props => {
                 img: 'https://www.brindamosporviajar.com/wp-content/uploads/2019/04/Florencia-3807.jpg'
             }
         ],
-        error: ''
+        error: '',
+        filtered: null
         //city: {}
     }
 
@@ -38,14 +39,30 @@ const CitiesState = props => {
 
     //Get cities
 
+    //Filter cities
+
+     const filterCities = text => {
+        dispatch({type: FILTER_CITIES, payload: text});
+    };
+
+    //Clear filter
+
+   const clearCities = () => {
+        dispatch({type: CLEAR_CITIES});
+    };
+
     return (
-        <cityContext.Provider
+        <CityContext.Provider
         value={{
-            cities: state.cities
+            cities: state.cities,
+            filtered: state.filtered,
+            filterCities,
+            clearCities
+
         }}
         >
             {props.children}
-        </cityContext.Provider>
+        </CityContext.Provider>
     );
 };
 
