@@ -31,6 +31,14 @@ import { Link } from 'react-router-dom';
                                 <NavItem className="">
                                 <Link className="text-white px-2" to='/about'>About</Link>
                                 </NavItem>
+
+                                <NavItem className="">
+                                <Link className="text-white px-2" to='/register'>Register</Link>
+                                </NavItem>
+
+                                <NavItem className="">
+                                <Link className="text-white px-2" to='/login'>Login</Link>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </Container>

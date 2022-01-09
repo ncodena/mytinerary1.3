@@ -14,65 +14,45 @@ import {REGISTER_SUCCESS,
 
 } from '../types';
 
-const CitiesState = props => {
+const AuthState = props => {
     const initialState = {
-        loading: false,
-        //cities: [],
-        cities: [
-            {
-                id: 1,
-                name: 'Barcelona',
-                country: 'Spain',
-                img: 'https://images.ecestaticos.com/HC-OGY71V9SczyURHSCDJmdM0Po=/0x0:1254x836/1338x752/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F1f4%2F283%2Fbc7%2F1f4283bc73a4e89e27fbba97cff6c4f8.jpg'
-
-            },
-            {
-                id: 2,
-                name: 'Amsterdam',
-                country: 'Netherlands',
-                img: 'https://www.holland.com/upload_mm/d/0/7/69550_fullimage_fietsen-amsterdam_1360x.jpg'
-            },
-            {
-                id: 3,
-                name: 'Firenze',
-                country: 'Italy',
-                img: 'https://www.brindamosporviajar.com/wp-content/uploads/2019/04/Florencia-3807.jpg'
-            }
-        ],
-        error: '',
-        filtered: null
-        //city: {}
+        user: null,
+        token: localStorage.getItem('token'),
+        isAuthenticated: null,
+        loading: true,
+        error: null
     }
 
-    const [state, dispatch] = useReducer(cityReducer, initialState)
+    const [state, dispatch] = useReducer(AuthReducer, initialState)
 
     //Get cities
 
-    //Filter cities
+    //Load user
 
-     const filterCities = text => {
-        dispatch({type: FILTER_CITIES, payload: text});
-    };
+    //Register user
 
-    //Clear filter
+    // Login user
 
-   const clearCities = () => {
-        dispatch({type: CLEAR_CITIES});
-    };
+    // Logout
+
+    // Clear errors
+
+
+
 
     return (
-        <CityContext.Provider
+        <AuthContext.Provider
         value={{
-            cities: state.cities,
-            filtered: state.filtered,
-            filterCities,
-            clearCities
-
+            token: state.token,
+            isAuthenticated: state.isAuthenticated,
+            loading: state.loading,
+            error: state.error,
+            user: state.user
         }}
         >
             {props.children}
-        </CityContext.Provider>
+        </AuthContext.Provider>
     );
 };
 
-export default CitiesState; 
+export default AuthState; 
