@@ -6,6 +6,10 @@ const { check, validationResult } = require('express-validator/check');
 
 const bcrypt = require('bcrypt');
 
+const jwt = require('jsonwebtoken');
+
+const config = require('../../config/keys').jwtSecret;
+
 //Importing user model
 
 const User = require('../../models/User')
@@ -63,13 +67,18 @@ router.post('/', [
 
             await user.save();
 
-            /*const payload = {
+            const payload = {
                 user: {
                 id: user.id
                 }
-            };*/
+            };
 
-            res.send('saved');
+            jwt.sign(payload, config, {
+                expiresIn: 360000
+            }, (err, token) =>{
+                if(err) throw err;
+                res.json({token});
+            });
 
 
 
