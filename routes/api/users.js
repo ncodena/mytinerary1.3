@@ -19,20 +19,6 @@ const User = require('../../models/User')
 // @route desc Register a new user
 // @raccess PUBLIC
 
-/*router.post('/', (req, res) => {
-    const newCity = new City({
-        name: req.body.name,
-        country: req.body.country,
-        img: req.body.img
-    });
-    newCity.save ((err, city) => {
-        if (city) {
-            res.send(city);
-        }else {
-            res.status(500).send(err)
-        }
-    })
-});*/
 
 router.post('/', [
     check('userName', 'Please add an username').not().isEmpty(),

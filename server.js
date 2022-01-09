@@ -20,6 +20,7 @@ mongoose.connect(db).then(() => console.log('Mongo DB connected...')).catch(err 
 
 app.use('/api/cities', require('./routes/api/cities'));
 app.use('/api/users', require('./routes/api/users'))
+app.use('/api/auth', require('./routes/api/auth'))
 
 const port = process.env.PORT || 5000;
 
