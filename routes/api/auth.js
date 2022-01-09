@@ -10,6 +10,8 @@ const jwt = require('jsonwebtoken');
 
 const config = require('../../config/keys').jwtSecret;
 
+const auth = require('../../middleware/auth');
+
 //Importing user model
 
 const User = require('../../models/User')
@@ -17,6 +19,30 @@ const User = require('../../models/User')
 // @route GET api/auth
 // @route desc Get logged in user
 // @raccess Private
+
+
+
+router.get('/', auth, async (req, res) => {
+
+    try{
+        const user = await User.findById(req.user.id).select('-password');
+        res.json(user);
+    }catch(err){
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+    /*City.find({})
+    .sort({ date: -1})
+    .then(cities => {res.json(cities)
+    })
+    .catch(err => console.log(err));*/
+});
+
+
+
+// @route POST api/auth
+// @route desc Auth user & get token
+// @raccess PUBLIC
 
 router.post('/', [
     check('email', 'Please include a valid email').isEmail(),
@@ -70,8 +96,5 @@ router.post('/', [
 
 
 
-// @route POST api/auth
-// @route desc Auth user & get token
-// @raccess PUBLIC
 
 module.exports = router;

@@ -1,6 +1,14 @@
-const express = require('express')
+const express = require('express');
 
-const router = express.Router()
+const router = express.Router();
+
+const { check, validationResult } = require('express-validator');
+
+const auth = require('../../middleware/auth');
+
+//Importing user model
+
+const User = require('../../models/User')
 
 //Importing city model
 
@@ -10,13 +18,14 @@ const City = require('../../models/City')
 // @route desc Get all items
 // @raccess PUBLIC
 
-router.get('/', (req, res) => {
+router.get('/', auth, async (req, res) => {
     City.find({})
-    .sort({ date: -1})
-    .then(cities => {res.json(cities)
+    .then(cities => {
+        res.send(cities)
     })
     .catch(err => console.log(err));
 });
+
 
 // @route POST api/cities
 // @route desc Post a city
