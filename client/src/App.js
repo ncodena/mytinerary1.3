@@ -11,6 +11,11 @@ import CityState from './context/city/CityState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/alertState';
 import Alerts from './components/Alerts';
+import setAuthToken from './utils/setAuthToken';
+
+if(localStorage.token){
+  setAuthToken(localStorage.token);
+}
 
 const App =( ) => {
   return (
